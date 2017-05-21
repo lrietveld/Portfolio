@@ -14,9 +14,9 @@ function setup() {
   centerZ = 0;
   createCanvas(800, 600, WEBGL);
   translate(0,0,0);
-  system = new ParticleSystem(createVector(random(-10,10), random(-10,10), random(-10, 10)));
+  system = new ParticleSystem(createVector(int(random(-10,10)), int(random(-10,10)), int(random(-10, 10))));
   
-  //system = new ParticleSystem(createVector(50, 50, 50));
+  //system = new ParticleSystem(createVector(50, -50, 50));
   system.addParticle();
   
 }
