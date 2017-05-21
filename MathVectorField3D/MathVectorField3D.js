@@ -13,18 +13,18 @@ function setup() {
   centerY = 0;
   centerZ = 0;
   createCanvas(800, 600, WEBGL);
-  translate(0,0,0);
-  system = new ParticleSystem(createVector(int(random(-10,10)), int(random(-10,10)), int(random(-10, 10))));
   
-  //system = new ParticleSystem(createVector(50, -50, 50));
+  system = new ParticleSystem(createVector(int(random(-10,10)), int(random(-10,10)), int(random(-10, 10))));
+  //system = new ParticleSystem(createVector(2, 200, 0));
   system.addParticle();
+  
   
 }
 
 function draw() {
-  background(88, 148, 252);
+  background(19, 32, 1);
   orbitControl();
-  translate(centerX, centerY, centerZ);
+  translate(0, 0, 0);
   normalMaterial();
   push();
   rotateZ(frameCount * 0.01);
@@ -34,18 +34,15 @@ function draw() {
   pop();
   push();
   fill(252, 145, 110, 70)
-  translate(centerX, centerY, centerZ);
   rotateY(PI/2);
   plane(400);
   pop();
   push();
-  translate(centerX, centerY, centerZ);
   fill(190, 252, 26, 70);
   rotateX(PI/2);
   plane(400);
   pop();
   push();
-  translate(centerX, centerY, centerZ);
   fill(93, 240, 252, 70);
   rotateZ(PI/2);
   plane(400);
@@ -73,9 +70,9 @@ Particle.prototype.run = function() {
 
 // Method to update position
 Particle.prototype.update = function(){
-  aX = this.numCharge*(centerX-this.position.x)/(pow(dist(this.position.x, this.position.y, centerX, centerY), 3)*this.r);
-  aY = this.numCharge*(centerY-this.position.y)/(pow(dist(this.position.x, this.position.y, centerX, centerY), 3)*this.r);
-  aZ = this.numCharge*(centerZ-this.position.z)/(pow(dist(this.position.x, this.position.y, centerX, centerY), 3)*this.r)
+  aX = this.numCharge*(centerX-this.position.x)/(pow(dist(this.position.x, this.position.y, this.position.z, centerX, centerY, centerZ), 3)*this.r);
+  aY = this.numCharge*(centerY-this.position.y)/(pow(dist(this.position.x, this.position.y, this.position.z, centerX, centerY, centerZ), 3)*this.r);
+  aZ = this.numCharge*(centerZ-this.position.z)/(pow(dist(this.position.x, this.position.y, this.position.z, centerX, centerY, centerZ), 3)*this.r)
   if(this.charge === true){
   this.acceleration = createVector(k*aX, k*aY, k*aZ);
   } else {
