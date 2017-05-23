@@ -3,7 +3,7 @@ var system;
 var centerX;
 var centerY;
 var centerZ;
-var k = 500;
+var k = 1000;
 var aX;
 var aY;
 var aZ;
@@ -15,8 +15,9 @@ function setup() {
   createCanvas(800, 600, WEBGL);
   
   system = new ParticleSystem(createVector(int(random(-10,10)), int(random(-10,10)), int(random(-10, 10))));
-  //system = new ParticleSystem(createVector(2, 200, 0));
+  //system = new ParticleSystem(createVector(-2, 200, 0));
   system.addParticle();
+  //var part = new Particle(
   
   
 }
@@ -26,22 +27,26 @@ function draw() {
   orbitControl();
   translate(0, 0, 0);
   normalMaterial();
+  
   push();
   rotateZ(frameCount * 0.01);
   rotateX(frameCount * 0.01);
   rotateY(frameCount * 0.01);
   sphere(30);
   pop();
+  
   push();
   fill(252, 145, 110, 70)
   rotateY(PI/2);
   plane(400);
   pop();
+  
   push();
   fill(190, 252, 26, 70);
   rotateX(PI/2);
   plane(400);
   pop();
+  
   push();
   fill(93, 240, 252, 70);
   rotateZ(PI/2);
@@ -97,7 +102,7 @@ Particle.prototype.display = function() {
 };
 // Is the particle still useful?
 Particle.prototype.isDead = function(){
-  if (abs(centerX-this.position.x) <= 10 && abs(centerY-this.position.y) <= 10 && abs(centerZ-this.position.z) <=10) {
+  if (abs(centerX-this.position.x) <= 10 && abs(centerY-this.position.y) <= 10 && abs(centerZ-this.position.z) <=10 || abs(centerX-this.position.x) >= 450 || abs(centerY-this.position.y) >= 450 || abs(centerZ-this.position.z) >=200) {
     return true;
   } else {
     return false;
@@ -110,7 +115,7 @@ var ParticleSystem = function(position) {
 };
 
 ParticleSystem.prototype.addParticle = function() {
-  this.particles.push(new Particle(createVector(random(width), random(height), random(200))));
+  this.particles.push(new Particle(createVector(random(-400,400), random(-400,400), random(-100,100))));
 };
 
 ParticleSystem.prototype.run = function() {
@@ -118,8 +123,8 @@ ParticleSystem.prototype.run = function() {
     var p = this.particles[i];
     p.run();
     if (p.isDead()) {
-      p.r = 0;
-      system.addParticle();
+      p.position = createVector(random(-400,400), random(-400,400), random(-100,100));
+      p.velocity = createVector(0, 0, 0);
       
     }
   }

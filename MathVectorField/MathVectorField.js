@@ -2,14 +2,15 @@
 var system;
 var centerX;
 var centerY;
-var k = 200;
+var k = 500;
 var aX;
 var aY;
+var d;
 
 function setup() {
-  centerX = 200;
-  centerY = 200;
-  createCanvas(400, 400);
+  createCanvas(800, 600);
+  centerX = width/2;
+  centerY = height/2;
   system = new ParticleSystem(createVector(random(width), random(height)));
   system.addParticle();
   
@@ -24,6 +25,7 @@ function draw() {
   
   system.run();
   fill(0);
+  noStroke();
   ellipse(centerX, centerY, 30, 30);
 }
 
@@ -31,7 +33,7 @@ var Particle = function(position) {
   this.position = position.copy();
   this.acceleration = createVector(aX, aY);
   this.velocity = createVector(0, 0);
-  this.r = random(10, 20);
+  this.r = random(20, 40);
   this.numCharge = int(random(1,5));
   this.colors = color(random(240, 270), random(130, 180), random(30, 60));
   this.charge = Math.random() < 0.8;
@@ -60,17 +62,24 @@ Particle.prototype.update = function(){
 
 // Method to display
 Particle.prototype.display = function() {
+  d = int(dist((this.position.x, this.position.y, centerX, centerY)));
   noStroke();
   fill(this.colors);
   ellipse(this.position.x, this.position.y, this.r, this.r);
   fill(0);  
+  stroke(255, 0, 0);
+  strokeWeight(1);
+  line(this.position.x, this.position.y, this.position.x+this.acceleration.x*10000, this.position.y+this.acceleration.y*10000);
+  ellipse(this.position.x+this.acceleration.x*10000, this.position.y+this.acceleration.y*10000, 3, 3);
   textAlign(CENTER);
   textSize(10);
   if(this.charge === true){
   text(this.numCharge + "+", this.position.x-this.r/2, this.position.y-this.r/2, this.r, this.r);  
   } else {
-  text(this.numCharge + "-", this.position.x-this.r/2, this.position.y-this.r/2, this.r, this.r);
+  text(this.numCharge + "-" , this.position.x-this.r/2, this.position.y-this.r/2, this.r, this.r);
   }
+  
+  
 };
 // Is the particle still useful?
 Particle.prototype.isDead = function(){
