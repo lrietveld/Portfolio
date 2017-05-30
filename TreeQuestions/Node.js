@@ -68,7 +68,7 @@ if (node !== null) {
   if(node.left !== null) {
  return node.left;
   } else {  
-    return new Node("YAY!", null, null);
+    return new Node(new Question("YAY!", 0, loadImage("data/yay.jpg")), null, null);
   }
 }
   
@@ -79,7 +79,7 @@ if (node !== null) {
   if(node.right !== null) {
  return node.right;
   } else {
- return new Node("Sorry! Try again", null, null);
+ return new Node(new Question("Sorry! Try again", 0, loadImage("data/ohno.jpg")), null, null);
 }
   
 }
