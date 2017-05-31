@@ -2,7 +2,6 @@
 //5-11-17
 
 var c;
-var d;
 var question;
 var gen;
 var que; 
@@ -11,6 +10,7 @@ var display;
 var yes;
 var no;
 var clears;
+var x;
 
 
 function preload(){
@@ -19,11 +19,10 @@ function preload(){
   clears = loadImage("data/up.png");
 }
 function setup() {
-c = 800;
-d = 800;
+c = 600;
+x = 100;
+createCanvas(c, c);
 
-
-createCanvas(c, d);
   var qs = [new Question("Do you have blonde hair?", 4, loadImage("data/blond.jpg")), 
   new Question("Are you a senior?", 2, loadImage("data/senior.jpg")), 
   new Question("Are you a senior?", 10, loadImage("data/senior.jpg")),  
@@ -48,13 +47,14 @@ function draw() {
   textAlign(CENTER);
   textSize(32);
   display = que.show().toString();
-  text(display, 400, 200);
-  image(no, 500, 400, 100, 100);
-  image(yes, 200, 400, 100, 100);
-  image(clears, 350, 300, 100, 100);
-  text("yes", 250, 450);
-  text("no", 550, 450);
-  text("reset", 400, 350);
+  rect(c/2-textWidth(display)/2, c/4-32, textWidth(display), 35);
+  text(display, c/2, c/4);
+  image(no, c/2+x, c/2, x, x);
+  image(yes, c/2-2*x, c/2, x, x);
+  image(clears, c/2-x/2, c/2-x, x, x);
+  text("yes", c/2-2*x+x/2, c/2+x/2);
+  text("no", c/2+x+x/2, c/2+x/2);
+  text("reset", c/2, c/2-x/2);
   //quesTree.preOrder(quesTree.root);
   
   //system.run();
