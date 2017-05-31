@@ -47,14 +47,19 @@ function draw() {
   textAlign(CENTER);
   textSize(32);
   display = que.show().toString();
+  fill(255, 150);
+  noStroke();
   rect(c/2-textWidth(display)/2, c/4-32, textWidth(display), 35);
+  fill(0);
   text(display, c/2, c/4);
-  image(no, c/2+x, c/2, x, x);
-  image(yes, c/2-2*x, c/2, x, x);
-  image(clears, c/2-x/2, c/2-x, x, x);
-  text("yes", c/2-2*x+x/2, c/2+x/2);
-  text("no", c/2+x+x/2, c/2+x/2);
-  text("reset", c/2, c/2-x/2);
+  tint(255, 128);
+  image(no, c/2+x, 3*c/4, x, x);
+  image(yes, c/2-2*x, 3*c/4, x, x);
+  image(clears, c/2-x/2, 3*c/4-x, x, x);
+  fill(0);
+  text("yes", c/2-2*x+x/2, 3*c/4+x/2);
+  text("no", c/2+x+x/2, 3*c/4+x/2);
+  text("reset", c/2, 3*c/4-x/2);
   //quesTree.preOrder(quesTree.root);
   
   //system.run();
