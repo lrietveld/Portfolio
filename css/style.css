@@ -438,7 +438,7 @@ a:focus {
   height: 100%;
   background-color: #c21500;
   padding-top: 30%;
-  opacity: 0.9;
+  opacity: 0.5;
 }
 #team .team-thumb:hover h3,
 #team .team-thumb:hover h4,
